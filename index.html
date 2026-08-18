@@ -972,14 +972,14 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
   </div>
 </section>
 </main>
-<div id="sent-toast" style="position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(140%);z-index:950;display:flex;align-items:center;gap:12px;padding:16px 24px;border-radius:999px;background:linear-gradient(100deg,#7B5CFF,#28E0D0);color:#06070C;font-weight:700;font-size:14.5px;box-shadow:0 14px 44px -12px rgba(123,92,255,.8);transition:transform .7s cubic-bezier(.22,1,.36,1)">
+<div id="sent-toast" style="position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(300%);z-index:950;display:flex;align-items:center;gap:12px;padding:16px 24px;border-radius:999px;background:linear-gradient(100deg,#7B5CFF,#28E0D0);color:#06070C;font-weight:700;font-size:14.5px;box-shadow:0 14px 44px -12px rgba(123,92,255,.8);transition:transform .7s cubic-bezier(.22,1,.36,1)">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#06070C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
   문의가 정상적으로 접수되었습니다. 빠르게 회신드리겠습니다.
 </div>
 <script>
 (function(){if(location.search.indexOf("sent=1")<0)return;var t=document.getElementById("sent-toast");
 setTimeout(function(){t.style.transform="translateX(-50%) translateY(0)";},700);
-setTimeout(function(){t.style.transform="translateX(-50%) translateY(140%)";},7500);
+setTimeout(function(){t.style.transform="translateX(-50%) translateY(300%)";},7500);
 history.replaceState(null,"",location.pathname);})();
 </script>
 
