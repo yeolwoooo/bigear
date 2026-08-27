@@ -44,6 +44,8 @@
   --mono:"SFMono-Regular",ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;
 }
 *,*::before,*::after{box-sizing:border-box}
+/* 한글 어절 단위 줄바꿈 — 단어 중간에서 끊기지 않게 */
+*,*::before,*::after{word-break:keep-all;overflow-wrap:break-word;line-break:strict}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
@@ -114,6 +116,8 @@ section{padding-block:clamp(78px,9.5vw,136px);position:relative}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(40,224,208,.55)}70%{box-shadow:0 0 0 9px rgba(40,224,208,0)}100%{box-shadow:0 0 0 0 rgba(40,224,208,0)}}
 @media (max-width:520px){.eyebrow{font-size:10px;letter-spacing:.18em;padding:6px 12px}}
 h1,h2,h3,h4{margin:0;font-weight:650;letter-spacing:-.035em;line-height:1.18}
+h1,h2,h3,h4{text-wrap:balance}
+p,.lead,dd,li,.card p,.spec dd{text-wrap:pretty}
 h2{font-size:clamp(30px,4.4vw,54px)}
 h3{font-size:clamp(19px,2vw,23px);letter-spacing:-.025em}
 .lead{color:var(--text-2);font-size:clamp(15px,1.5vw,18px);line-height:1.8;max-width:62ch}
@@ -348,7 +352,8 @@ header.stuck{background:rgba(5,6,10,.72);backdrop-filter:blur(18px) saturate(140
 @media (max-width:900px){.company{grid-template-columns:1fr}}
 .spec{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--bg-soft)}
 .spec dl{margin:0;display:grid;grid-template-columns:144px 1fr}
-@media (max-width:420px){.spec dl{grid-template-columns:120px 1fr}.spec dt{font-size:11.6px;padding-inline:14px}.spec dd{font-size:13px;padding-inline:14px}}
+.spec dt{white-space:nowrap}
+@media (max-width:420px){.spec dl{grid-template-columns:auto 1fr}.spec dt{font-size:11.6px;padding-inline:14px}.spec dd{font-size:13px;padding-inline:14px}}
 .spec dt,.spec dd{margin:0;padding:16px 20px;border-bottom:1px solid var(--line);font-size:13.8px}
 .spec dt{color:var(--muted);background:rgba(255,255,255,.018);font-size:12.6px}
 .spec dd{color:var(--text)}
@@ -484,7 +489,7 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
   <canvas id="wave" aria-hidden="true"></canvas>
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow"><span class="dot"></span>AI Marketing Operations · Enterprise B2B</span>
+      <span class="eyebrow"><span class="dot"></span>AI Marketing Operations · Enterprise B2B</span>
       <h1 class="hero-title">
         <span class="line"><span>쓸수록 브랜드를</span></span>
         <span class="line"><span><em style="font-style:normal" class="grad">더 잘 아는</em> 시스템</span></span>
@@ -505,7 +510,7 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
 <!-- ===================== STAT BAND ===================== -->
 <div class="statband">
   <div class="wrap">
-    <div class="stat"><div class="k"><span data-count="7">0</span><em>년+</em></div><div class="v">엔터프라이즈 B2B<br>CRM · 세일즈 현장 경력</div></div>
+    <div class="stat"><div class="k"><span data-count="7">0</span><em>년+</em></div><div class="v">엔터프라이즈 B2B<br>CRM · 세일즈 현장 경력</div></div>
     <div class="stat"><div class="k"><span data-count="3">0</span><em>곳</em></div><div class="v">도입 협의 중인<br>초기 고객사</div></div>
     <div class="stat"><div class="k"><span data-count="100">0</span><em>+</em></div><div class="v">적용 예정<br>프랜차이즈 지점 규모</div></div>
     <div class="stat"><div class="k"><span data-count="109">0</span><em>건</em></div><div class="v">자동화 테스트<br>전건 통과</div></div>
@@ -515,9 +520,9 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
     <span>Brand Brain</span><span>Guardrail Engine</span><span>Approval Workflow</span><span>Multi-Location Rollout</span>
-    <span>Role Permission</span><span>Audit Log</span><span>Cost Telemetry</span><span>Naver · Kakao · Instagram</span>
+    <span>Role Permission</span><span>Audit Log</span><span>Cost Telemetry</span><span>Naver · Kakao · Instagram</span>
     <span>Brand Brain</span><span>Guardrail Engine</span><span>Approval Workflow</span><span>Multi-Location Rollout</span>
-    <span>Role Permission</span><span>Audit Log</span><span>Cost Telemetry</span><span>Naver · Kakao · Instagram</span>
+    <span>Role Permission</span><span>Audit Log</span><span>Cost Telemetry</span><span>Naver · Kakao · Instagram</span>
   </div>
 </div>
 
@@ -541,7 +546,7 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
       <div>
         <div class="n">02</div>
         <h3>규정 위반은 사후에 발견됩니다</h3>
-        <p>식품 표시광고, 의료·화장품 심의, 과장 표현. 문제가 된 뒤에야 확인되고, 그 책임은 본부가 집니다.</p>
+        <p>식품 표시광고, 의료⁠·⁠화장품 심의, 과장 표현. 문제가 된 뒤에야 확인되고, 그 책임은 본부가 집니다.</p>
       </div>
       <div>
         <div class="n">03</div>
@@ -559,7 +564,7 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
       <span class="eyebrow rv">How It Works</span>
       <h2 class="rv rv-d1">끊어진 도구가 아니라<br>돌아가는 <span class="grad">하나의 루프</span></h2>
       <p class="lead rv rv-d2">
-        기획 · 제작 · 발행 · 분석 · 통합을 각각의 메뉴로 두지 않았습니다.
+        기획 · 제작 · 발행 · 분석 · 통합을 각각의 메뉴로 두지 않았습니다.
         분석의 결과가 다음 기획의 입력으로 되돌아오도록 설계했기 때문에, 쓰면 쓸수록 기준이 정교해집니다.
       </p>
     </div>
@@ -568,25 +573,25 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
       <div class="steps-visual rv">
         <canvas id="stepCanvas" width="760" height="760" aria-hidden="true"></canvas>
         <div class="badge" id="stepBadge">PLAN</div>
-        <div class="loopnote">분석 → 기획으로 되돌아오는 순환 구조. 승인·반려 이력이 다음 생성에 반영됩니다.</div>
+        <div class="loopnote">분석 → 기획으로 되돌아오는 순환 구조. 승인⁠·⁠반려 이력이 다음 생성에 반영됩니다.</div>
       </div>
       <div class="steps-list">
         <div class="step" data-step="0">
           <div class="num">STEP 01 — PLAN</div>
           <h3>무엇을 만들지 먼저 정합니다</h3>
-          <p>브랜드 정보와 지난 성과, 키워드를 근거로 콘텐츠 브리프를 만듭니다. 주제·채널·포맷·훅 방향·CTA·발행일이 한 장에 정리됩니다.</p>
-          <ul><li>콘텐츠 브리프</li><li>채널 · 포맷 결정</li><li>발행 일정</li></ul>
+          <p>브랜드 정보와 지난 성과, 키워드를 근거로 콘텐츠 브리프를 만듭니다. 주제⁠·⁠채널⁠·⁠포맷⁠·⁠훅 방향⁠·⁠CTA⁠·⁠발행일이 한 장에 정리됩니다.</p>
+          <ul><li>콘텐츠 브리프</li><li>채널 · 포맷 결정</li><li>발행 일정</li></ul>
         </div>
         <div class="step" data-step="1">
           <div class="num">STEP 02 — CREATE</div>
           <h3>브랜드의 언어로 씁니다</h3>
-          <p>브랜드 컨셉·타깃·훅·문체·CTA를 지시문 수준으로 정의해 두면, 생성 결과가 그 기준을 벗어나지 않습니다. 본부가 잠근 문구는 편집해도 서버가 원문으로 복원합니다.</p>
-          <ul><li>Brand Brain 적용</li><li>조각 단위 잠금</li><li>파일 · 원문 기반 생성</li></ul>
+          <p>브랜드 컨셉⁠·⁠타깃⁠·⁠훅⁠·⁠문체⁠·⁠CTA를 지시문 수준으로 정의해 두면, 생성 결과가 그 기준을 벗어나지 않습니다. 본부가 잠근 문구는 편집해도 서버가 원문으로 복원합니다.</p>
+          <ul><li>Brand Brain 적용</li><li>조각 단위 잠금</li><li>파일 · 원문 기반 생성</li></ul>
         </div>
         <div class="step" data-step="2">
           <div class="num">STEP 03 — PUBLISH</div>
           <h3>승인을 통과한 것만 나갑니다</h3>
-          <p>금칙어와 규정 위반은 생성 단계에서 차단·경고로 걸러집니다. 차단 항목이 남아 있으면 복사 자체가 잠깁니다. 승인 권한과 감사 로그는 기본값입니다.</p>
+          <p>금칙어와 규정 위반은 생성 단계에서 차단⁠·⁠경고로 걸러집니다. 차단 항목이 남아 있으면 복사 자체가 잠깁니다. 승인 권한과 감사 로그는 기본값입니다.</p>
           <ul><li>가드레일 2등급</li><li>승인 게이트</li><li>감사 로그</li></ul>
         </div>
         <div class="step" data-step="3">
@@ -598,8 +603,8 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
         <div class="step" data-step="4">
           <div class="num">STEP 05 — MEASURE</div>
           <h3>성과가 다음 기획으로 돌아옵니다</h3>
-          <p>발행 로그와 채널 지표, 유입 데이터를 묶어 무엇이 통했는지 정리합니다. 승인·반려 이력까지 함께 쌓여 다음 생성 품질이 올라갑니다.</p>
-          <ul><li>성과 리포트</li><li>UTM · 유입 연결</li><li>승인 이력 학습</li></ul>
+          <p>발행 로그와 채널 지표, 유입 데이터를 묶어 무엇이 통했는지 정리합니다. 승인⁠·⁠반려 이력까지 함께 쌓여 다음 생성 품질이 올라갑니다.</p>
+          <ul><li>성과 리포트</li><li>UTM · 유입 연결</li><li>승인 이력 학습</li></ul>
         </div>
       </div>
     </div>
@@ -637,7 +642,7 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow rv">What Makes It Different</span>
-      <h2 class="rv rv-d1">따라 만들기 어려운<br><span class="grad">다섯 개의 축</span></h2>
+      <h2 class="rv rv-d1">따라 만들기 어려운<br><span class="grad">여섯 개의 축</span></h2>
       <p class="lead rv rv-d2">"우리 AI가 더 좋습니다"는 차별점이 아니라고 봅니다. 모두 같은 모델을 씁니다. 차이는 그 위에 무엇을 쌓았는가에서 갈립니다.</p>
     </div>
     <div class="cards">
@@ -645,7 +650,7 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3a4 4 0 0 0-4 4 3.5 3.5 0 0 0-1 6.8V17a4 4 0 0 0 8 0v-3.2A3.5 3.5 0 0 0 16 7a4 4 0 0 0-4-4z"/><path d="M12 7v10"/></svg></div>
         <div class="idx">AXIS 01</div>
         <h3>Brand Brain</h3>
-        <p>톤뿐 아니라 제품·가격·정책·금칙어, 그리고 <b style="color:var(--text);font-weight:600">무엇이 승인되고 무엇이 반려됐는지</b>가 함께 쌓입니다. 이 기록은 시간으로만 만들어지고, 복제할 수 없습니다.</p>
+        <p>톤뿐 아니라 제품⁠·⁠가격⁠·⁠정책⁠·⁠금칙어, 그리고 <b style="color:var(--text);font-weight:600">무엇이 승인되고 무엇이 반려됐는지</b>가 함께 쌓입니다. 이 기록은 시간으로만 만들어지고, 복제할 수 없습니다.</p>
         <span class="moat">가장 강한 해자</span>
       </article>
       <article class="card tilt rv rv-d1">
@@ -659,13 +664,13 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 4.5-3.2 7.9-8 9-4.8-1.1-8-4.5-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
         <div class="idx">AXIS 03</div>
         <h3>팀 운영 체계</h3>
-        <p>승인 게이트, 역할 권한, 가드레일, 감사 로그. 법무·보안 검토를 통과하지 못하면 도입 자체가 불가능한 영역을 처음부터 넣었습니다.</p>
+        <p>승인 게이트, 역할 권한, 가드레일, 감사 로그. 법무⁠·⁠보안 검토를 통과하지 못하면 도입 자체가 불가능한 영역을 처음부터 넣었습니다.</p>
       </article>
       <article class="card tilt rv rv-d3">
         <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div>
         <div class="idx">AXIS 04</div>
         <h3>국내 채널 우선</h3>
-        <p>네이버 블로그·플레이스, 카카오채널, 인스타그램. 해외 도구가 다루지 않는 국내 채널의 형식과 관행을 기준으로 설계했습니다.</p>
+        <p>네이버 블로그⁠·⁠플레이스, 카카오채널, 인스타그램. 해외 도구가 다루지 않는 국내 채널의 형식과 관행을 기준으로 설계했습니다.</p>
       </article>
       <article class="card tilt rv rv-d4">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 20h18M6 20v-7M11 20V8M16 20v-4M21 20v-11"/></svg></div>
@@ -677,7 +682,7 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
         <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2.5"/><path d="M3 9h18M7 13h5"/></svg></div>
         <div class="idx">AXIS 06</div>
         <h3>운영 원가가 보입니다</h3>
-        <p>생성 호출마다 토큰·비용·캐시 적중률이 기록됩니다. 도입 기업은 이 시스템이 월 얼마짜리인지 근거를 갖고 판단합니다.</p>
+        <p>생성 호출마다 토큰⁠·⁠비용⁠·⁠캐시 적중률이 기록됩니다. 도입 기업은 이 시스템이 월 얼마짜리인지 근거를 갖고 판단합니다.</p>
       </article>
     </div>
   </div>
@@ -690,7 +695,7 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
       <span class="eyebrow rv">Capabilities</span>
       <h2 class="rv rv-d1">솔루션 한 가지만 하는<br>회사가 아닙니다</h2>
       <p class="lead rv rv-d2">
-        빅이어컴퍼니는 소프트웨어 개발을 축으로 마케팅·광고, 브랜드 디자인, 기술 컨설팅을 함께 다룹니다.
+        빅이어컴퍼니는 소프트웨어 개발을 축으로 마케팅⁠·⁠광고, 브랜드 디자인, 기술 컨설팅을 함께 다룹니다.
         만드는 사람과 알리는 사람이 같은 팀 안에 있을 때 나오는 결과를 지향합니다.
       </p>
     </div>
@@ -699,18 +704,18 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
         <div class="qh"><strong>솔루션</strong><span>SOLUTION</span></div>
         <ul>
           <li>AI 마케팅 자동화 플랫폼</li>
-          <li>응용 소프트웨어 개발 · 공급</li>
+          <li>응용 소프트웨어 개발 · 공급</li>
           <li>SaaS 아키텍처 설계</li>
-          <li>API 연동 · 시스템 인터페이스</li>
+          <li>API 연동 · 시스템 인터페이스</li>
         </ul>
       </div>
       <div>
-        <div class="qh"><strong>마케팅 · 광고</strong><span>MARKETING</span></div>
+        <div class="qh"><strong>마케팅 · 광고</strong><span>MARKETING</span></div>
         <ul>
           <li>브랜드 콘텐츠 전략</li>
           <li>채널 운영 체계 설계</li>
-          <li>광고 대행 · 캠페인 기획</li>
-          <li>성과 측정 · 리포팅</li>
+          <li>광고 대행 · 캠페인 기획</li>
+          <li>성과 측정 · 리포팅</li>
         </ul>
       </div>
       <div>
@@ -719,15 +724,15 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
           <li>UX / UI 설계</li>
           <li>디자인 시스템 구축</li>
           <li>브랜드 아이덴티티</li>
-          <li>시각 디자인 · 콘텐츠 제작</li>
+          <li>시각 디자인 · 콘텐츠 제작</li>
         </ul>
       </div>
       <div>
         <div class="qh"><strong>기술 컨설팅</strong><span>CONSULTING</span></div>
         <ul>
-          <li>CRM · 세일즈 프로세스 설계</li>
+          <li>CRM · 세일즈 프로세스 설계</li>
           <li>업무 자동화 진단</li>
-          <li>도입 · 정착 컨설팅</li>
+          <li>도입 · 정착 컨설팅</li>
           <li>디지털 전환(DX) 자문</li>
         </ul>
       </div>
@@ -743,25 +748,25 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
       <h2 class="rv rv-d1">현장을 아는 사람이<br>만들고 있습니다</h2>
       <p class="lead rv rv-d2">
         BIGEAR의 설계는 자료 조사에서 나오지 않았습니다.
-        구성원은 엔터프라이즈 CRM · 플랫폼 구축 프로젝트에 참여해 왔으며, 그 과정에서 확인한 문제를 제품의 기준으로 옮겼습니다.
+        구성원은 엔터프라이즈 CRM · 플랫폼 구축 프로젝트에 참여해 왔으며, 그 과정에서 확인한 문제를 제품의 기준으로 옮겼습니다.
       </p>
     </div>
     <div class="inds rv rv-d2">
       <div class="ind"><div class="t">제조</div><div class="d">복잡한 승인 절차와 다부서 협업. 권한 설계가 왜 먼저인지 배운 영역입니다.</div></div>
-      <div class="ind"><div class="t">유통 · 커머스</div><div class="d">채널마다 규격이 다르고 속도가 생명입니다. 다채널 변환의 필요가 여기서 나왔습니다.</div></div>
-      <div class="ind"><div class="t">IT · 서비스</div><div class="d">빠른 사이클과 잦은 메시지 변경. 기준을 한 곳에서 바꾸는 구조의 근거입니다.</div></div>
-      <div class="ind"><div class="t">공공 · 교육</div><div class="d">기록과 근거가 남아야 하는 환경. 감사 로그를 기본값으로 둔 이유입니다.</div></div>
+      <div class="ind"><div class="t">유통 · 커머스</div><div class="d">채널마다 규격이 다르고 속도가 생명입니다. 다채널 변환의 필요가 여기서 나왔습니다.</div></div>
+      <div class="ind"><div class="t">IT · 서비스</div><div class="d">빠른 사이클과 잦은 메시지 변경. 기준을 한 곳에서 바꾸는 구조의 근거입니다.</div></div>
+      <div class="ind"><div class="t">공공 · 교육</div><div class="d">기록과 근거가 남아야 하는 환경. 감사 로그를 기본값으로 둔 이유입니다.</div></div>
     </div>
     <div class="creds rv rv-d3" style="margin-top:26px">
       <div class="cred">
-        <div class="ct">엔터프라이즈 세일즈 · CRM 현장 7년+</div>
+        <div class="ct">엔터프라이즈 세일즈 · CRM 현장 7년+</div>
         <p class="cd">
-          글로벌 CRM 파트너사에서의 Sales Cloud 기반 영업·CRM 구축 경험과 SI 기업 영업 조직 리드 경험을 합산한 기간입니다.
+          글로벌 CRM 파트너사에서의 Sales Cloud 기반 영업⁠·⁠CRM 구축 경험과 SI 기업 영업 조직 리드 경험을 합산한 기간입니다.
           제품이 아니라 <b style="color:var(--text-2)">기업이 시스템을 도입할 때 실제로 무엇을 따지는지</b>를 아는 것이 이 회사의 출발점입니다.
         </p>
       </div>
       <div class="cred">
-        <div class="ct">기획 · 개발 PM · UX/UI를 직접 수행</div>
+        <div class="ct">기획 · 개발 PM · UX/UI를 직접 수행</div>
         <p class="cd">
           요구사항 정의부터 화면 설계, 개발 관리까지 직접 맡아온 경험을 바탕으로,
           외주에 의존하지 않고 제품 방향을 빠르게 검증하고 수정하는 구조로 운영합니다.
@@ -783,7 +788,7 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
     </div>
     <div class="road">
       <div class="rv">
-        <div class="when">STEP 01</div><h3>제품 정의 · 설계 완료</h3>
+        <div class="when">STEP 01</div><h3>제품 정의 · 설계 완료</h3>
         <p>고객 문제 정의, 기능 명세, 데이터 모델, 기술 스택 확정. 기획 문서 11종으로 문서화했습니다.</p>
         <span class="state">완료</span>
       </div>
@@ -793,7 +798,7 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
         <span class="state">완료</span>
       </div>
       <div class="rv rv-d2">
-        <div class="when">STEP 03</div><h3>고객사 적용 · 검증</h3>
+        <div class="when">STEP 03</div><h3>고객사 적용 · 검증</h3>
         <p>확보된 초기 고객사의 실제 브랜드 기준을 반영하고, 운영 환경에서 품질과 이행률을 측정합니다.</p>
         <span class="state now">진행 중</span>
       </div>
@@ -805,10 +810,10 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
     </div>
 
     <div class="proof">
-      <div class="rv"><div class="pk">기획 문서 11종</div><div class="pv">전략 · 기능 명세 · 데이터 모델 · 리스크 · 납품 명세까지 문서화</div></div>
+      <div class="rv"><div class="pk">기획 문서 11종</div><div class="pv">전략 · 기능 명세 · 데이터 모델 · 리스크 · 납품 명세까지 문서화</div></div>
       <div class="rv rv-d1"><div class="pk">테스트 109건</div><div class="pv">자동화 테스트 전건 통과 기준으로 기능을 관리</div></div>
       <div class="rv rv-d2"><div class="pk">가드레일 24건</div><div class="pv">프랜차이즈 공통 금칙어 규칙 세트를 기본 제공</div></div>
-      <div class="rv rv-d3"><div class="pk">접근성 기준 충족</div><div class="pv">모바일 375px 검증 · 색 대비 미달 0건</div></div>
+      <div class="rv rv-d3"><div class="pk">접근성 기준 충족</div><div class="pv">모바일 375px 검증 · 색 대비 미달 0건</div></div>
     </div>
   </div>
 </section>
@@ -870,8 +875,8 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
           </dl>
         </div>
         <div class="biz">
-          <span>응용 소프트웨어 개발 · 공급</span>
-          <span>광고 대행 · 마케팅</span>
+          <span>응용 소프트웨어 개발 · 공급</span>
+          <span>광고 대행 · 마케팅</span>
           <span>경영 컨설팅</span>
           <span>시각 디자인</span>
         </div>
@@ -883,7 +888,7 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
             <h3>파는 사람이 만들면<br>다른 것이 만들어집니다</h3>
             <p style="margin-top:14px">
               기업에 시스템을 팔아본 사람은 계약이 어디서 막히는지 압니다. 기능이 부족해서가 아니라,
-              권한이 없어서 · 기록이 남지 않아서 · 규정을 지킬 수 없어서 막힙니다.
+              권한이 없어서 · 기록이 남지 않아서 · 규정을 지킬 수 없어서 막힙니다.
             </p>
             <p style="margin-top:14px">
               BIGEAR가 승인 게이트와 감사 로그, 가드레일을 부가 기능이 아니라 기본 구조로 둔 이유입니다.
@@ -939,8 +944,8 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
             <select id="f-type" name="문의유형" required>
               <option value="" disabled selected>선택해 주세요</option>
               <option>솔루션 도입 검토</option>
-              <option>마케팅 · 광고 대행</option>
-              <option>브랜드 · 디자인</option>
+              <option>마케팅 · 광고 대행</option>
+              <option>브랜드 · 디자인</option>
               <option>기술 컨설팅</option>
               <option>제휴 제안</option>
               <option>채용</option>
@@ -948,14 +953,14 @@ footer{border-top:1px solid var(--line);padding-block:54px 42px;background:rgba(
             </select>
           </div>
           <div class="field">
-            <label for="f-scale">브랜드 · 지점 규모</label>
+            <label for="f-scale">브랜드 · 지점 규모</label>
             <select id="f-scale" name="브랜드지점규모">
               <option value="" disabled selected>선택해 주세요</option>
-              <option>단일 브랜드 · 지점 없음</option>
-              <option>단일 브랜드 · 지점 1~10</option>
-              <option>단일 브랜드 · 지점 10~50</option>
-              <option>단일 브랜드 · 지점 50~100</option>
-              <option>단일 브랜드 · 지점 100 이상</option>
+              <option>단일 브랜드 · 지점 없음</option>
+              <option>단일 브랜드 · 지점 1~10</option>
+              <option>단일 브랜드 · 지점 10~50</option>
+              <option>단일 브랜드 · 지점 50~100</option>
+              <option>단일 브랜드 · 지점 100 이상</option>
               <option>다중 브랜드 운영</option>
             </select>
           </div>
