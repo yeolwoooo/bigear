@@ -316,14 +316,15 @@ body.load{overflow:hidden}
   opacity:.85}
 
 /* ============ 마퀴 ============ */
-.mq{position:relative;overflow:hidden;padding:clamp(15px,2.5vh,28px) 0;background:#15181B;
+.mq{position:relative;overflow:hidden;padding:clamp(10px,1.4vh,15px) 0;background:#15181B;
   border-top:1px solid rgba(255,255,255,.09);border-bottom:1px solid rgba(255,255,255,.09);z-index:4}
 .mqT{display:flex;width:max-content;will-change:transform}
 .mqT em{display:inline-flex;align-items:center;font-style:normal;font-family:'Archivo';
-  font-weight:200;font-size:clamp(24px,4.2vw,60px);letter-spacing:-.03em;white-space:nowrap}
-.mqT em b{font-weight:200;padding:0 .32em}
-.mqT em i{font-style:normal;color:#1FB971;font-size:.3em;line-height:1;padding:0 .1em;
-  transform:translateY(-.18em)}
+  font-weight:200;font-size:clamp(10px,1.26vw,18px);letter-spacing:.02em;white-space:nowrap;
+  color:#E9EEEA2}
+.mqT em b{font-weight:300;padding:0 .9em}
+.mqT em i{font-style:normal;color:#1FB971;font-size:.42em;line-height:1;padding:0 .1em;
+  transform:translateY(-.12em)}
 
 /* ============ 라이트 패널 배경 ============ */
 .panel.lt{overflow:hidden}
@@ -874,8 +875,17 @@ body.load{overflow:hidden}
     ts.forEach(function(t){
       var base=parseFloat(t.dataset.mqspeed||'0.75');
       var reps=parseInt(t.dataset.mqreps||'3',10);
+      var per=Math.max(1,Math.round(t.children.length/reps));
       var x=0, w=0, vis=true;
-      function setW(){ w=t.scrollWidth/reps; }
+      function setW(){
+        // 화면보다 트랙이 짧으면 빈 구간이 생기므로 단위를 복제해 채운다
+        var unit=t.scrollWidth/reps, guard=0;
+        while(unit>0 && t.scrollWidth < innerWidth+unit*1.2 && guard++<24){
+          for(var k=0;k<per;k++) t.appendChild(t.children[k].cloneNode(true));
+          reps++; unit=t.scrollWidth/reps;
+        }
+        w=t.scrollWidth/reps;
+      }
       setW(); addEventListener('resize',setW);
       new IntersectionObserver(function(e){ vis=e[0].isIntersecting; },{rootMargin:'150px'})
         .observe(t.parentNode);
