@@ -62,54 +62,40 @@ section{position:relative}
 
 /* ============ 헤더 ============ */
 .hdr{position:fixed;top:0;left:0;right:0;z-index:880;display:flex;align-items:center;
-  justify-content:space-between;padding-top:24px;padding-bottom:24px;mix-blend-mode:difference}
-.brand{display:flex;align-items:center;gap:9px}
+  justify-content:space-between;gap:18px;padding-top:22px;padding-bottom:22px;
+  mix-blend-mode:difference}
+.brand{display:flex;align-items:center;gap:9px;flex:0 0 auto}
 .mk{width:18px;height:18px;display:block;fill:#fff}
 .bw{font-family:'Archivo';font-weight:600;font-size:12.5px;letter-spacing:.22em;color:#fff}
-.hR{display:flex;align-items:center;gap:20px}
+.hnav{display:flex;align-items:center;gap:clamp(12px,2.2vw,34px);flex:1 1 auto;
+  justify-content:flex-end}
+.hnav a{position:relative;font-family:'PlexMono','Pretendard',monospace;font-size:9.5px;
+  letter-spacing:.13em;text-transform:uppercase;color:#fff;opacity:.55;white-space:nowrap;
+  padding:3px 0;transition:opacity .3s}
+.hnav a:hover{opacity:1}
+.hnav a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:#fff;
+  transform:scaleX(0);transform-origin:0 50%;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.hnav a:hover::after{transform:scaleX(1)}
+.hnav a.act{opacity:1}
+.hnav a.act::after{transform:scaleX(1)}
+.hnav .ix{display:none}
+.hR{display:flex;align-items:center;gap:16px;flex:0 0 auto;
+  padding-left:clamp(10px,1.8vw,26px);margin-left:clamp(4px,1vw,14px);
+  border-left:1px solid rgba(255,255,255,.28)}
 .hR .mono{font-size:9.5px;color:#fff;opacity:.6}
-.mbtn{display:flex;align-items:center;gap:9px;color:#fff}
-.mbtn .mono{font-size:9.5px;opacity:.9}
-.mbtn i{display:block;width:26px;height:1px;background:#fff;transition:transform .4s}
-.mbtn u{display:block;width:17px;height:1px;background:#fff;text-decoration:none;transition:transform .4s,width .4s}
-.mbtn .bars{display:flex;flex-direction:column;gap:5px;align-items:flex-end}
-
-/* ============ 메뉴 오버레이 ============ */
-.ov{position:fixed;inset:0;z-index:970;background:#15181B;display:flex;flex-direction:column;
-  justify-content:center;clip-path:inset(0 0 100% 0);pointer-events:none}
-.ov.on{pointer-events:auto}
-.ov ul{list-style:none;margin:0;padding:0}
-.ov li{overflow:hidden}
-.ov a{display:block;font-size:clamp(38px,8.4vw,120px);font-weight:200;letter-spacing:-.05em;
-  line-height:1.12;color:#E9EEEA;transform:translateY(110%);transition:color .3s}
-.ov a:hover{color:#1FB971}
-.ov .idx{font-family:'PlexMono','Pretendard',monospace;font-size:10px;letter-spacing:.16em;color:#E9EEEA3;
-  vertical-align:super;margin-right:16px}
-.ov .foot{margin-top:clamp(34px,6vh,70px);display:flex;gap:34px;flex-wrap:wrap}
-.ov .foot span{font-family:'PlexMono','Pretendard',monospace;font-size:10px;letter-spacing:.14em;color:#E9EEEA3;
-  text-transform:uppercase}
-.ovClose{position:absolute;top:24px;right:clamp(20px,4.4vw,72px);display:flex;align-items:center;gap:9px}
-.ovClose .mono{font-size:9.5px;color:#E9EEEA2}
-.ovClose b{display:block;width:22px;height:22px;position:relative}
-.ovClose b::before,.ovClose b::after{content:"";position:absolute;left:0;top:50%;width:100%;height:1px;background:#E9EEEA}
-.ovClose b::before{transform:rotate(45deg)}.ovClose b::after{transform:rotate(-45deg)}
-
-/* ============ 좌하단 레일 ============ */
-.rail{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(18px);z-index:860;
-  display:flex;flex-direction:row;gap:2px;opacity:0;pointer-events:none;
-  background:rgba(21,24,27,.66);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:5px 6px;
-  transition:opacity .5s,transform .5s cubic-bezier(.22,1,.36,1),background .4s,border-color .4s}
-.rail.on{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-.rail a{font-family:'PlexMono','Pretendard',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;
-  padding:5px 11px;border-radius:999px;color:#E9EEEA2;transition:color .3s,background .3s;white-space:nowrap}
-.rail a:hover{color:#E9EEEA}
-.rail a.act{background:#1FB971;color:#101512}
-.rail.inv{background:rgba(239,241,238,.74);border-color:rgba(16,21,18,.1)}
-.rail.inv a{color:#454F49}
-.rail.inv a:hover{color:#101512}
-.rail.inv a.act{background:#1FB971;color:#101512}
-@media(max-width:640px){.rail a{padding:5px 8px;font-size:8px;letter-spacing:.1em}}
+@media(max-width:900px){
+  .hnav{gap:11px}
+  .hnav a{font-size:8.5px;letter-spacing:.08em}
+  .bw{font-size:11px;letter-spacing:.18em}
+}
+@media(max-width:600px){
+  .hdr{padding-top:16px;padding-bottom:16px}
+  .hnav{gap:9px}
+  .hnav a{font-size:8px;letter-spacing:.04em}
+  .hR{display:none}
+  .mk{width:15px;height:15px}
+  .bw{font-size:0;letter-spacing:0}
+}
 
 /* ============ 히어로 ============ */
 #hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;
@@ -119,9 +105,9 @@ section{position:relative}
 .hbg::after{content:"";position:absolute;inset:0;
   background:radial-gradient(ellipse 90% 70% at 30% 60%,rgba(21,24,27,0) 20%,rgba(21,24,27,.92) 78%)}
 .hTag{position:relative;z-index:3;font-size:9.5px;color:#E9EEEA3;margin-bottom:clamp(16px,3vh,30px)}
-.hLead{position:absolute;right:clamp(20px,4.4vw,72px);top:42%;width:min(40ch,38vw);
+.hLead{position:absolute;right:clamp(20px,4.4vw,72px);top:40%;width:min(40ch,38vw);
   text-align:right;font-size:clamp(14px,1.32vw,17.5px);line-height:1.62;font-weight:300;z-index:3}
-.hDisp{position:relative;z-index:3;font-size:clamp(52px,13.2vw,208px);line-height:.86;
+.hDisp{position:relative;z-index:3;font-size:clamp(31px,7.9vw,125px);line-height:.9;
   font-weight:200;letter-spacing:-.055em;margin-left:-.06em}
 .hDisp span{display:block;overflow:hidden;padding-bottom:.02em}
 .hDisp i{display:block;font-style:normal;transform:translateY(104%)}
@@ -305,7 +291,6 @@ section{position:relative}
   *{animation:none!important;transition:none!important}
   .w,.ctH .ch{opacity:1!important}
   .hDisp i{transform:none!important}
-  .ov a{transform:none!important}
   .grain,.cur,.curR{display:none}
   .lCopy .st{transform:none!important}
 }
@@ -450,17 +435,11 @@ body.load{overflow:hidden}
   <div class="preBar"><i id="preBar"></i></div>
 </div><div class="sprog" aria-hidden="true"><i id="sprogI"></i></div><header class="hdr pad">
   <a href="#hero" class="brand" data-cur aria-label="BIGEAR 홈"><svg class="mk" viewBox="0 0 26 26" aria-hidden="true"><rect x="2.25" y="7.5" width="3.5" height="11" rx="1.75"/><rect x="8.25" y="2" width="3.5" height="22" rx="1.75"/><rect x="14.25" y="5.5" width="3.5" height="15" rx="1.75"/><rect x="20.25" y="9.5" width="3.5" height="7" rx="1.75"/></svg><span class="bw">BIGEAR</span></a>
-  <div class="hR">
-    <span class="mono">KR</span>
-    <button class="mbtn" id="menuBtn" data-cur aria-label="메뉴 열기">
-      <span class="mono">Menu</span><span class="bars"><i></i><u></u></span></button>
-  </div></header><div class="ov pad" id="ov" aria-hidden="true">
-  <button class="ovClose" id="ovClose" data-cur aria-label="메뉴 닫기">
-    <span class="mono">Close</span><b></b></button>
-  <ul><li><a href="#about" data-cur><span class="idx">01</span>과제</a></li><li><a href="#loop" data-cur><span class="idx">02</span>솔루션</a></li><li><a href="#services" data-cur><span class="idx">03</span>제공 영역</a></li><li><a href="#cases" data-cur><span class="idx">04</span>구축 현황</a></li><li><a href="#contact" data-cur><span class="idx">05</span>문의</a></li></ul>
-  <div class="foot">
-    <span>주식회사 빅이어컴퍼니</span><span>lwy3427@gmail.com</span><span>bigear.kr</span>
-  </div></div><nav class="rail" aria-label="섹션"><a href="#about" data-rail="about" data-cur>과제</a><a href="#loop" data-rail="loop" data-cur>솔루션</a><a href="#services" data-rail="services" data-cur>제공 영역</a><a href="#cases" data-rail="cases" data-cur>구축 현황</a><a href="#contact" data-rail="contact" data-cur>문의</a></nav><main><section id="hero" class="pad">
+  <nav class="hnav" aria-label="주요 메뉴">
+    <a href="#about" data-nav="about" data-cur>과제</a><a href="#loop" data-nav="loop" data-cur>솔루션</a><a href="#services" data-nav="services" data-cur>제공 영역</a><a href="#cases" data-nav="cases" data-cur>구축 현황</a><a href="#contact" data-nav="contact" data-cur>문의</a>
+  </nav>
+  <div class="hR"><span class="mono">KR</span></div>
+</header><main><section id="hero" class="pad">
   <div class="hbg"><span class="hdots"></span><canvas id="hcv"></canvas></div>
   <span class="hglow" id="hglow"></span>
   <p class="hLead" data-words><span class="w">쓸수록</span> <span class="w">브랜드를</span> <span class="w">더</span> <span class="w">잘</span> <span class="w">아는</span> <span class="w">시스템입니다.</span> <span class="w">승인한</span> <span class="w">것과</span> <span class="w">반려한</span> <span class="w">것이</span> <span class="w">그대로</span> <span class="w">쌓이고,</span> <span class="w">시간이</span> <span class="w">지날수록</span> <span class="w">브랜드의</span> <span class="w">기준을</span> <span class="w">더</span> <span class="w">정확히</span> <span class="w">재현합니다.</span></p>
@@ -632,35 +611,7 @@ body.load{overflow:hidden}
       if(e.target.closest('[data-cur]')) r.classList.remove('big'); });
   })();
 
-  /* ---------- 메뉴 오버레이 ---------- */
-  (function(){
-    var ov=document.getElementById('ov'), btn=document.getElementById('menuBtn'),
-        cl=document.getElementById('ovClose'), links=ov?ov.querySelectorAll('a'):[];
-    if(!ov) return;
-    var open=false, tl=null;
-    if(g){
-      tl=g.timeline({paused:true})
-        .to(ov,{clipPath:'inset(0% 0% 0% 0%)',duration:.85,ease:'expo.inOut'})
-        .to(links,{y:'0%',duration:.8,ease:'expo.out',stagger:.07},'-=.45')
-        .from(ov.querySelector('.foot'),{opacity:0,duration:.6},'-=.4');
-    }
-    function set(o){
-      open=o; ov.classList.toggle('on',o); ov.setAttribute('aria-hidden',String(!o));
-      if(lenis){ o?lenis.stop():lenis.start(); }
-      document.body.style.overflow = o?'hidden':'';
-      if(tl){ o?tl.play():tl.reverse(); }
-      else { ov.style.clipPath = o?'inset(0)':'inset(0 0 100% 0)';
-             links.forEach(function(a){ a.style.transform = o?'none':'translateY(110%)'; }); }
-    }
-    btn.addEventListener('click',function(){ set(true); });
-    cl.addEventListener('click',function(){ set(false); });
-    addEventListener('keydown',function(e){ if(e.key==='Escape'&&open) set(false); });
-    links.forEach(function(a){ a.addEventListener('click',function(e){
-      var t=document.querySelector(a.getAttribute('href')); if(!t) return;
-      e.preventDefault(); set(false); setTimeout(function(){ goTo(t); },520); }); });
-  })();
-
-  document.querySelectorAll('.rail a, .brand, .hFoot a').forEach(function(a){
+  document.querySelectorAll('.hnav a, .brand, .hFoot a').forEach(function(a){
     if(!a.getAttribute||!a.getAttribute('href')) return;
     a.addEventListener('click',function(e){
       var t=document.querySelector(a.getAttribute('href')); if(!t) return;
@@ -763,23 +714,16 @@ body.load{overflow:hidden}
         for(var i=0;i<cs.length;i++) cs[i].classList.toggle('on',i<n); }});
   })();
 
-  /* ---------- 레일 스파이 ---------- */
+  /* ---------- 헤더 내비 현재 섹션 표시 ---------- */
   (function(){
-    var rail=document.querySelector('.rail'); if(!rail) return;
-    var links=[].slice.call(rail.querySelectorAll('[data-rail]'));
-    var secs=links.map(function(a){return document.getElementById(a.dataset.rail);});
-    var lights=[].slice.call(document.querySelectorAll('[data-theme="light"]'));
+    var nav=document.querySelector('.hnav'); if(!nav) return;
+    var links=[].slice.call(nav.querySelectorAll('[data-nav]'));
+    var secs=links.map(function(a){return document.getElementById(a.dataset.nav);});
     function upd(){
-      var y=scrollY||pageYOffset, vh=innerHeight, ft=document.querySelector('footer.foot');
-      var near = ft && ft.getBoundingClientRect().top < vh*0.8;
-      rail.classList.toggle('on', y>vh*0.6 && !near);
-      var cur=-1;
+      var vh=innerHeight, cur=-1;
       secs.forEach(function(s,i){ if(!s) return; var r=s.getBoundingClientRect();
-        if(r.top<=vh*0.5 && r.bottom>vh*0.5) cur=i; });
+        if(r.top<=vh*0.45 && r.bottom>vh*0.45) cur=i; });
       links.forEach(function(a,i){ a.classList.toggle('act',i===cur); });
-      var light=lights.some(function(s){var r=s.getBoundingClientRect();
-        return r.top<=vh*0.5 && r.bottom>vh*0.5;});
-      rail.classList.toggle('inv',light);
     }
     if(lenis) lenis.on('scroll',upd);
     addEventListener('scroll',upd,{passive:true});
